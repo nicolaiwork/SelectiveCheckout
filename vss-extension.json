@@ -1,9 +1,9 @@
 {
     "manifestVersion": 1,
-    "id": "SelectiveCheckout",
-    "name": "Selective Checkout",
-    "version": "0.2.48",
-    "publisher": "SebastianMechelke",
+    "id": "SelectiveCheckoutReborn",
+    "name": "Selective Checkout Reborn",
+    "version": "0.2.52",
+    "publisher": "NicoDGK",
     "galleryFlags": [
         "Public",
         "Preview"
@@ -12,13 +12,14 @@
         "git",
         "checkout",
         "selective",
+        "sparse",
         "folder",
         "subfolder",
         "partial"
     ],
     "repository": {
         "type": "git",
-        "uri": "https://github.com/ibvhefe/SelectiveCheckout"
+        "uri": "https://github.com/nicolaiwork/SelectiveCheckout"
     },
     "content": {
         "details": {

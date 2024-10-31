@@ -1,12 +1,12 @@
 {
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-    "id": "a3d9f755-5e00-41f3-8fe3-59d774c812a1",
-    "name": "SelectiveCheckout",
-    "friendlyName": "Selective Checkout",
+    "id": "596921a8-aed8-4ce2-b0ea-0bbca6d802ce",
+    "name": "SelectiveCheckoutReborn",
+    "friendlyName": "Selective Checkout Reborn",
     "description": "Checkout only the folders that are required for the build",
     "helpMarkDown": "",
     "category": "Utility",
-    "author": "Sebastian Mechelke",
+    "author": "NicoDGK",
     "version": {
         "Major": 0,
         "Minor": 2,

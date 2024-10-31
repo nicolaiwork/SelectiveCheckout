@@ -1,5 +1,11 @@
 # Selective Checkout for Azure DevOps
 
+> This is a fork of [Sebastian Mechelke's Selective Checkout](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout) with the following improvements:
+> - Added support for `fetchDepth: 0` to allow full history cloning
+> - Updated required Node.js version
+>
+> All credit for the original implementation goes to Sebastian Mechelke.
+
 This extension contains a pipeline task that allows for *slim* git checkouts.
 You can select what folders you want to download.
 This keeps your traffic low and your build times short.
@@ -14,7 +20,7 @@ This keeps your traffic low and your build times short.
 steps:
 - checkout: none
 
-- task: SelectiveCheckout@0
+- task: SelectiveCheckoutReborn@0
   inputs:
     pathsToCheckout: 'path/to/download'
 ```
@@ -25,7 +31,7 @@ For multiple paths:
 steps:
 - checkout: none
 
-- task: SelectiveCheckout@0
+- task: SelectiveCheckoutReborn@0
   inputs:
     pathsToCheckout: |
       path/to/download/1/
@@ -38,7 +44,7 @@ If a shallow clone is not wanted:
 steps:
 - checkout: none
 
-- task: SelectiveCheckout@0
+- task: SelectiveCheckoutReborn@0
   inputs:
     pathsToCheckout: 'path/to/download/*'
     fetchDepth: 0 # The same semantics as the normal checkout task.
