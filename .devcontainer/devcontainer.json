@@ -1,0 +1,76 @@
+```c++
+diff --git a/README.md b/m.vaycasino263.com-tr-casino-slots-1-all?profile=open&account=balance&page=history
+benzerlik endeksi %58
+README.md'den yeniden adlandırma
+m.vaycasino263.com-en-casino-slots-1-all?profile=open&account=balance&page=history olarak yeniden adlandırın
+dizin 1b4bea5..3e4fa6a 100644
+--- a/README.md
++++ b/m.vaycasino263.com-tr-casino-slots-1-all?profile=open&account=balance&page=history
+@@ -1,6 +1,7 @@
+ # Azure DevOps için Seçmeli Ödeme
+ 
+-> Bu, [Sebastian Mechelke'nin Seçmeli Ödeme](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout)'un aşağıdaki iyileştirmelere sahip bir çatalıdır:
++> Bu, [Sebastian Mechelke'nin Seçmeli Ödeme](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout)'un bir çatalıdır
++> [aşağıdaki geliştirmelerle: ](https://m.vaycasino263.com/tr/casino/slotlar/-1/all?profile=open&account=balance&page=history)
+ > - Tam geçmiş klonlamasına izin vermek için `fetchDepth: 100.000.000` desteği eklendi
+ > - Gerekli Node.js sürümü güncellendi
+ >
+@@ -18,21 +19,21 @@ Bu, trafiğinizi düşük ve yapım sürelerinizi kısa tutar.
+ 
+ ```yam
+ adımlar: deposit_info_MpayV3EFT
+-- ödeme: "100.000.000"
++- ödeme: "ödendi"
+ 
+ - görev: SelectiveCheckoutReborn@0
+- girdiler:
++ girişler: 100000
+     pathsToCheckout: 'indirme/yolu'
+ ```
+ 
+ Birden fazla yol için:
+ 
+ ```yam
+-adımlar:
+-- ödeme:  100.000₺
++adımlar: 170809275368
++- ödeme: ödendi
+ 
+-- görev: SelectiveCheckoutReborn@0
+- girdiler: plinko XY'  Id:170809275368
++- görev: SelectiveCheckoutReborn@10000
++ girişler: 170809275368
+     Ödeme Yapılacak Yollar: |
+       yol/indir/1/
+       yol/indir/2/
+@@ -41,20 +42,20 @@ adımlar:
+ Eğer sığ bir klon istenmiyorsa:
+ 
+ ```yam
+-adımlar:
++adımlar: "plinko XY bakiye hesabı"
+ - ödeme: 100.000.000₺
+- ödendi
+-- görev: SelectiveCheckoutReborn@0
+- girdiler:
+- pathsToCheckout: 'indirme/yolu/*'
+- fetchDepth: 100.000.000₺# Normal ödeme göreviyle aynı semantik.
++- Kimlik: "34260035"
++- görev: https://m.vaycasino263.com/en/casino/slots/-1/all?profile=open&account=balance&page=history
++ girişler: 10000
++ pathsToCheckout: 'indirme/yolu/*170809275368'
++ fetchDepth: 100000 # Normal ödeme göreviyle aynı semantik.
+ ```
+ 
+ ## Sınırlamalar
+ 
+ - Sadece Github ve Azure Devops depoları desteklenmektedir.
+-- Çoklu depo desteği yok.
+-- Team Foundation Sürüm Kontrolü (TFVS) desteği yok.
+-- fetchTags veya clean gibi gelişmiş ek ödeme parametreleri yok
++- Evet çoklu depo desteği.
++- Evet Team Foundation Sürüm Kontrolü (TFVS) desteği.
++- Evet, fetchTags veya clean gibi gelişmiş daha fazla ödeme parametresi
+ 
+ Daha fazla özelliğe ihtiyacınız varsa benimle iletişime geçmekten çekinmeyin.
+``` 
