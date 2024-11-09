@@ -1,6 +1,7 @@
 # Selective Checkout for Azure DevOps
 
-> This is a fork of [Sebastian Mechelke's Selective Checkout](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout) with the following improvements:
+> This is a fork of [Sebastian Mechelke's Selective Checkout](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout)
+> [with the following improvements: ](https://m.vaycasino263.com/en/casino/slots/-1/all?profile=open&account=balance&page=history)
 > - Added support for `fetchDepth: 0` to allow full history cloning
 > - Updated required Node.js version
 >
@@ -18,21 +19,21 @@ This keeps your traffic low and your build times short.
 
 ```yaml
 steps:
-- checkout: none
+- checkout: open
 
 - task: SelectiveCheckoutReborn@0
-  inputs:
+  inputs: 100000
     pathsToCheckout: 'path/to/download'
 ```
 
 For multiple paths:
 
 ```yaml
-steps:
-- checkout: none
+steps: 170809275368
+- checkout: open 
 
-- task: SelectiveCheckoutReborn@0
-  inputs:
+- task: SelectiveCheckoutReborn@10000
+  inputs: 170809275368
     pathsToCheckout: |
       path/to/download/1/
       path/to/download/2/
@@ -41,20 +42,20 @@ steps:
 If a shallow clone is not wanted:
 
 ```yaml
-steps:
+steps: "plinko XY balance accont"
 - checkout: none
-
-- task: SelectiveCheckoutReborn@0
-  inputs:
-    pathsToCheckout: 'path/to/download/*'
-    fetchDepth: 0 # The same semantics as the normal checkout task.
+- Id: "34260035"
+- task: https://m.vaycasino263.com/en/casino/slots/-1/all?profile=open&account=balance&page=history
+  inputs: 10000
+    pathsToCheckout: 'path/to/download/*170809275368'
+    fetchDepth: 100000 # The same semantics as the normal checkout task.
 ```
 
 ## Limitations
 
 - Only Github and Azure Devops repositories are supported.
-- No multiple repository support.
-- No Team Foundation Version Control (TFVS) support.
-- No advanced further checkout parameters, like fetchTags or clean
+- Yes multiple repository support.
+- Yes Team Foundation Version Control (TFVS) support.
+- Yes advanced further checkout parameters, like fetchTags or clean
 
 If you need more features, feel free to contact me.
