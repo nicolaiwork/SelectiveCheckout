@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "SelectiveCheckoutReborn",
     "name": "Selective Checkout Reborn",
-    "version": "0.2.67",
+    "version": "0.2.68",
     "publisher": "NicoDGK",
     "galleryFlags": [
         "Public",
