@@ -7,6 +7,7 @@ function run() {
         const pathsToCheckout: string | undefined = tl.getInput('pathsToCheckout', true);
         let fetchDepth: string | undefined = tl.getInput('fetchDepth', false);
         let repositoryUri = tl.getVariable('Build.Repository.Uri');
+        const useTreeFilter: boolean = tl.getBoolInput('useTreeFilter', false) || false;
 
         // Parameter validation.
         if(!fetchDepth){
@@ -69,9 +70,18 @@ function run() {
         const sourceBranch = convertRefToBranch(tl.getVariable('Build.SourceBranch') || '');
 
         executeCommand(`git version`);
-        let cloneCommand = `git clone --no-checkout --sparse --no-tags --progress --no-recurse-submodules https://${accessToken}@${repositoryUri} .`;
+        let cloneCommand = `git clone --no-checkout --sparse --no-tags --progress --no-recurse-submodules`;
+        if (useTreeFilter) {
+            cloneCommand += ` --filter=tree:0`;
+        }
+        cloneCommand += ` https://${accessToken}@${repositoryUri} .`;
+        
         if (Number(fetchDepth) > 0) {
-            cloneCommand = `git clone --no-checkout --depth ${fetchDepth} --sparse --no-tags --progress --no-recurse-submodules https://${accessToken}@${repositoryUri} .`;
+            cloneCommand = `git clone --no-checkout --depth ${fetchDepth} --sparse --no-tags --progress --no-recurse-submodules`;
+            if (useTreeFilter) {
+                cloneCommand += ` --filter=tree:0`;
+            }
+            cloneCommand += ` https://${accessToken}@${repositoryUri} .`;
         }
         const response = executeCommand(cloneCommand);
         if (response.includes('existing Git repository')) {

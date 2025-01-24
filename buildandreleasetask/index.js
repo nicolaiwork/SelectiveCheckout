@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const tl = require("azure-pipelines-task-lib/task");
-const child_process_1 = require("child_process");
-const fs = require("fs");
+var tl = require("azure-pipelines-task-lib/task");
+var child_process_1 = require("child_process");
+var fs = require("fs");
 function run() {
     try {
-        const pathsToCheckout = tl.getInput('pathsToCheckout', true);
-        let fetchDepth = tl.getInput('fetchDepth', false);
-        let repositoryUri = tl.getVariable('Build.Repository.Uri');
+        var pathsToCheckout = tl.getInput('pathsToCheckout', true);
+        var fetchDepth = tl.getInput('fetchDepth', false);
+        var repositoryUri = tl.getVariable('Build.Repository.Uri');
+        var useTreeFilter = tl.getBoolInput('useTreeFilter', false) || false;
         // Parameter validation.
         if (!fetchDepth) {
             console.log('No fetch depth was given, using default of 1');
@@ -40,7 +41,7 @@ function run() {
             return;
         }
         // Checkout.
-        const repoPath = tl.getVariable('Build.Repository.LocalPath');
+        var repoPath = tl.getVariable('Build.Repository.LocalPath');
         if (repoPath) {
             if (!fs.existsSync(repoPath)) {
                 fs.mkdirSync(repoPath, { recursive: true });
@@ -55,31 +56,40 @@ function run() {
             return;
         }
         process.chdir(repoPath);
-        const accessToken = tl.getVariable('System.AccessToken');
-        const startAzure = repositoryUri.indexOf('dev.azure.com');
+        var accessToken = tl.getVariable('System.AccessToken');
+        var startAzure = repositoryUri.indexOf('dev.azure.com');
         if (startAzure !== -1) {
             repositoryUri = repositoryUri.substring(startAzure);
         }
-        const startGithub = repositoryUri.indexOf('github.com');
+        var startGithub = repositoryUri.indexOf('github.com');
         if (startGithub !== -1) {
             repositoryUri = repositoryUri.substring(startGithub);
         }
-        const sourceBranch = convertRefToBranch(tl.getVariable('Build.SourceBranch') || '');
-        executeCommand(`git version`);
-        let cloneCommand = `git clone --no-checkout --sparse --no-tags --progress --no-recurse-submodules https://${accessToken}@${repositoryUri} .`;
-        if (Number(fetchDepth) > 0) {
-            cloneCommand = `git clone --no-checkout --depth ${fetchDepth} --sparse --no-tags --progress --no-recurse-submodules https://${accessToken}@${repositoryUri} .`;
+        var sourceBranch = convertRefToBranch(tl.getVariable('Build.SourceBranch') || '');
+        executeCommand("git version");
+        var cloneCommand = "git clone --no-checkout --sparse --no-tags --progress --no-recurse-submodules";
+        if (useTreeFilter) {
+            cloneCommand += " --filter=tree:0";
         }
-        const response = executeCommand(cloneCommand);
+        cloneCommand += " https://".concat(accessToken, "@").concat(repositoryUri, " .");
+        if (Number(fetchDepth) > 0) {
+            cloneCommand = "git clone --no-checkout --depth ".concat(fetchDepth, " --sparse --no-tags --progress --no-recurse-submodules");
+            if (useTreeFilter) {
+                cloneCommand += " --filter=tree:0";
+            }
+            cloneCommand += " https://".concat(accessToken, "@").concat(repositoryUri, " .");
+        }
+        var response = executeCommand(cloneCommand);
         if (response.includes('existing Git repository')) {
             tl.setResult(tl.TaskResult.Failed, 'Repository already exists. Set "checkout:none" in previous checkout task to avoid this error.');
             return;
         }
-        for (const path of pathsToCheckout.split('\n')) {
-            executeCommand(`git sparse-checkout add ${path}`);
+        for (var _i = 0, _a = pathsToCheckout.split('\n'); _i < _a.length; _i++) {
+            var path = _a[_i];
+            executeCommand("git sparse-checkout add ".concat(path));
         }
-        executeCommand(`git fetch origin ${sourceBranch}:local`);
-        executeCommand(`git checkout local`);
+        executeCommand("git fetch origin ".concat(sourceBranch, ":local"));
+        executeCommand("git checkout local");
     }
     catch (err) {
         tl.setResult(tl.TaskResult.Failed, err.message);
@@ -90,7 +100,7 @@ function convertRefToBranch(ref) {
 }
 function executeCommand(command) {
     console.log('##[command]' + command);
-    const response = (0, child_process_1.execSync)(command).toString();
+    var response = (0, child_process_1.execSync)(command).toString();
     console.log(response);
     return response;
 }
