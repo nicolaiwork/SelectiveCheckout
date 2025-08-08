@@ -3,6 +3,7 @@
 > This is a fork of [Sebastian Mechelke's Selective Checkout](https://marketplace.visualstudio.com/items?itemName=SebastianMechelke.SelectiveCheckout) with the following improvements:
 > - Added support for `fetchDepth: 0` to allow full history cloning
 > - Updated required Node.js version
+> - Added option to enable/disable tree filter during clone
 >
 > All credit for the original implementation goes to Sebastian Mechelke.
 
@@ -48,6 +49,18 @@ steps:
   inputs:
     pathsToCheckout: 'path/to/download/*'
     fetchDepth: 0 # The same semantics as the normal checkout task.
+```
+
+If you want to use the tree filter during clone (previous default behavior):
+
+```yaml
+steps:
+- checkout: none
+
+- task: SelectiveCheckoutReborn@0
+  inputs:
+    pathsToCheckout: 'path/to/download/*'
+    useTreeFilter: true # Enables the --filter=tree:0 option during clone
 ```
 
 ## Limitations
