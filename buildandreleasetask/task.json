@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 2,
-        "Patch": 69
+        "Patch": 71
     },
     "instanceNameFormat": "Instance_Name_Format",
     "inputs": [
@@ -40,12 +40,9 @@
         }
     ],
     "execution": {
-        "Node10": {
-            "target": "index.js"
-        },
-        "Node16": {
+        "Node20": {
             "target": "index.js"
         }
     },
-    "minimumAgentVersion": "2.144.0"
+    "minimumAgentVersion": "3.220.5"
 }
